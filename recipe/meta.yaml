@@ -20,14 +20,17 @@ build:
     - lib/libfontconfig.so.1.9.2  # [linux]
 
 requirements:
-  build:
-    - pkg-config
-    - libtool
+  host:
     - freetype 2.7|2.7.*
     - libiconv
     - libpng >=1.6.28,<1.7
     - libxml2 2.9.*
     - icu 58.*  # [not win]
+    - {{ compiler('c') }}
+
+  build:
+    - pkg-config
+    - libtool
 
   run:
     - freetype 2.7|2.7.*
