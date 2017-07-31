@@ -20,9 +20,13 @@ build:
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - make
     - pkg-config
     - gperf
     - libtool
+
+  host:
     - freetype 2.8.1
     - libiconv 1.15
     - libpng >=1.6.32,<1.6.35
