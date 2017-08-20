@@ -31,8 +31,8 @@ requirements:
     - icu       # [not win]
     - libpng
     - libxml2
-    - libiconv
     - libuuid   # [not win]
+    - libiconv                    # [not linux and not win]
 
 test:
   commands:
