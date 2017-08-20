@@ -31,7 +31,7 @@ requirements:
     - icu       # [not win]
     - libpng
     - libxml2
-    - libiconv
+    - libiconv                    # [not linux and not win]
 
 test:
   commands:
