@@ -22,7 +22,7 @@ build:
 requirements:
   host:
     - freetype 2.7|2.7.*
-    - libiconv
+    - libiconv                    # [not linux and not win]
     - libpng >=1.6.28,<1.7
     - libxml2 2.9.*
     - icu 58.*  # [not win]
@@ -34,7 +34,7 @@ requirements:
 
   run:
     - freetype 2.7|2.7.*
-    - libiconv
+    - libiconv                    # [not linux and not win]
     - libpng >=1.6.28,<1.7
     - libxml2 2.9.*
     - icu 58.*  # [not win]
