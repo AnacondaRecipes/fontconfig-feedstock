@@ -1,4 +1,4 @@
-{% set version = "2.12.1" %}
+{% set version = "2.12.4" %}
 
 package:
   name: fontconfig
@@ -7,14 +7,14 @@ package:
 source:
   fn: fontconfig-{{ version }}.tar.bz2
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
-  sha256: b449a3e10c47e1d1c7a6ec6e2016cca73d3bd68fbbd4f0ae5cc6b573f7d6c7f3
+  sha256: 668293fcc4b3c59765cdee5cee05941091c0879edcc24dfec5455ef83912e45c
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
 
 build:
-  number: 4
+  number: 0
   skip: True                      # [win]
   binary_has_prefix_files:        # [linux]
     - lib/libfontconfig.so.1.9.2  # [linux]
