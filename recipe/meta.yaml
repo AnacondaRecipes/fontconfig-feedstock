@@ -20,24 +20,21 @@ build:
     - lib/libfontconfig.so.1.9.2  # [linux]
 
 requirements:
-  host:
-    - freetype 2.7|2.7.*
-    - libiconv                    # [not linux and not win]
-    - libpng >=1.6.28,<1.7
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
-    - {{ compiler('c') }}
-
   build:
+    - {{ compiler('c') }}
     - pkg-config
     - libtool
+
+  host:
+    - icu       # [not win]
+    - libpng
+    - libxml2
+    - freetype 2.7|2.7.*
+    - libiconv                    # [not linux and not win]
 
   run:
     - freetype 2.7|2.7.*
     - libiconv                    # [not linux and not win]
-    - libpng >=1.6.28,<1.7
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
 
 test:
   commands:
