@@ -13,12 +13,12 @@ sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
 
 chmod +x configure
 
-./configure --prefix "${PREFIX}" \
-	    --enable-libxml2 \
-	    --enable-static \
+./configure --prefix "${PREFIX}"  \
+	    --enable-libxml2      \
+	    --enable-static       \
 	    --disable-docs
 
-make -j${CPU_COUNT}
+make -j${CPU_COUNT} V=1
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make check
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make install
 

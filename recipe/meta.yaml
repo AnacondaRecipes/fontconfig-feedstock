@@ -17,23 +17,24 @@ build:
   number: 0
   skip: True                      # [win]
   binary_has_prefix_files:        # [linux]
-    - lib/libfontconfig.so.1.9.2  # [linux]
+    - lib/libfontconfig.so.1.*    # [linux]
+  run_exports:
+    # remove symbols basically never (once, in 2006).
+    #    https://abi-laboratory.pro/tracker/timeline/fontconfig/
+    - {{ pin_subpackage('fontconfig', max_pin='x') }}
 
 requirements:
   build:
     - {{ compiler('c') }}
     - pkg-config
     - libtool
-
   host:
+    - freetype
     - icu       # [not win]
     - libpng
     - libxml2
-    - freetype 2.7|2.7.*
     - libiconv                    # [not linux and not win]
-
   run:
-    - freetype 2.7|2.7.*
     - libiconv                    # [not linux and not win]
 
 test:
