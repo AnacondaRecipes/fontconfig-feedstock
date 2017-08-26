@@ -17,6 +17,10 @@ build:
   skip: True                       # [win]
   binary_has_prefix_files:         # [linux]
     - lib/libfontconfig.so.1.11.1  # [linux]
+  run_exports:
+    # remove symbols basically never (once, in 2006).
+    #    https://abi-laboratory.pro/tracker/timeline/fontconfig/
+    - {{ pin_subpackage('fontconfig') }}
 
 requirements:
   build:
