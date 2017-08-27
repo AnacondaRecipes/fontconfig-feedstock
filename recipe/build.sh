@@ -18,7 +18,7 @@ chmod +x configure
 	    --enable-static       \
 	    --disable-docs
 
-make -j${CPU_COUNT} V=1
+make -j${CPU_COUNT} ${VERBOSE_AT}
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make check
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make install
 
