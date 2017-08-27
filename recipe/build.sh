@@ -19,7 +19,7 @@ chmod +x configure
             --disable-docs                    \
             --with-add-fonts=${PREFIX}/fonts
 
-make -j${CPU_COUNT}
+make -j${CPU_COUNT} ${VERBOSE_AT}
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make check
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make install
 
