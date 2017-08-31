@@ -15,8 +15,9 @@ source:
 build:
   number: 0
   skip: True                      # [win]
-  binary_has_prefix_files:        # [linux]
-    - lib/libfontconfig.so.1.9.2  # [linux]
+  binary_has_prefix_files:        # [unix]
+    - lib/libfontconfig.so.1.*    # [linux]
+    - lib/libfontconfig.*.dylib*  # [osx]
   run_exports:
     # remove symbols basically never (once, in 2006).
     #    https://abi-laboratory.pro/tracker/timeline/fontconfig/
