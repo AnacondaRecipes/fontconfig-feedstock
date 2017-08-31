@@ -13,11 +13,11 @@ sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
 
 chmod +x configure
 
-./configure --prefix "${PREFIX}" \
-	    --enable-libxml2 \
-	    --enable-static \
-	    --disable-docs \
-      --with-add-fonts=${PREFIX}/fonts
+./configure --prefix "${PREFIX}"              \
+            --enable-libxml2                  \
+            --enable-static                   \
+            --disable-docs                    \
+            --with-add-fonts=${PREFIX}/fonts
 
 make -j${CPU_COUNT}
 eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make check
