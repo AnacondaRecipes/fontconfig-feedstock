@@ -5,7 +5,6 @@ package:
   version: {{ version }}
 
 source:
-  fn: fontconfig-{{ version }}.tar.bz2
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
   sha256: 668293fcc4b3c59765cdee5cee05941091c0879edcc24dfec5455ef83912e45c
   patches:
@@ -16,7 +15,7 @@ source:
 build:
   number: 2
   skip: True                      # [win]
-  binary_has_prefix_files:        # [linux]
+  binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
     - lib/libfontconfig.*.dylib*  # [osx]
   run_exports:
