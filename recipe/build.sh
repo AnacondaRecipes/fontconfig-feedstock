@@ -1,15 +1,7 @@
 #!/bin/bash
 
-
-if [[ $(uname) == 'Darwin' ]];
-then
-    export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-elif [[ $(uname) == 'Linux' ]];
-then
-    export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-fi
-
 sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
+export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,${PREFIX}/lib"
 
 chmod +x configure
 
@@ -20,8 +12,8 @@ chmod +x configure
             --with-add-fonts=${PREFIX}/fonts
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
-eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make check
-eval ${LIBRARY_SEARCH_VAR}="${PREFIX}/lib" make install
+make check
+make install
 
 # Remove computed cache with local fonts
 rm -Rf "${PREFIX}/var/cache/fontconfig"
