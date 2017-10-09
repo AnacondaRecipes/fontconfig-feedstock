@@ -22,7 +22,7 @@ build:
   run_exports:
     # remove symbols basically never (once, in 2006).
     #    https://abi-laboratory.pro/tracker/timeline/fontconfig/
-    - {{ pin_subpackage('fontconfig', max_pin='x') }}
+    - {{ pin_subpackage('fontconfig') }}
 
 requirements:
   build:
