@@ -14,7 +14,7 @@ source:
     - fcf.patch       # [linux]
 
 build:
-  number: 1
+  number: 2
   skip: True                      # [win]
   binary_has_prefix_files:        # [linux]
     - lib/libfontconfig.so.1.*    # [linux]
@@ -34,8 +34,6 @@ requirements:
     - icu       # [not win]
     - libpng
     - libxml2
-    - libiconv                    # [not linux and not win]
-  run:
     - libiconv                    # [not linux and not win]
 
 test:
