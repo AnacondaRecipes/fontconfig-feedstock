@@ -1,0 +1,16 @@
+VERBOSE_AT:
+- V=1
+c_compiler:
+- gcc
+fontconfig:
+- '2.12'
+freetype:
+- 2.8.1
+icu:
+- '58'
+libiconv:
+- '1.15'
+libpng:
+- 1.6.32
+libxml2:
+- '2.9'
