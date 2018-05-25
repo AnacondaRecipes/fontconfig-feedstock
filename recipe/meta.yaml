@@ -29,6 +29,7 @@ requirements:
     - make
     - pkg-config
     - gperf
+    - gettext                     # [not win]
     - libtool
     - automake
     - autoconf

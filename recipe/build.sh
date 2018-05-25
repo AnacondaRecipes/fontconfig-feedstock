@@ -2,6 +2,9 @@
 
 sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
 
+# So that -Wl,--as-needed works (sorted to appear before before libs)
+autoreconf -vfi
+
 ./configure --prefix="${PREFIX}"                \
             --enable-libxml2                    \
             --enable-static                     \
