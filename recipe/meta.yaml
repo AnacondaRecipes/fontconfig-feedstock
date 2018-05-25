@@ -14,29 +14,32 @@ source:
 
 build:
   number: 0
-  skip: True                       # [win]
-  binary_has_prefix_files:         # [linux]
-    - lib/libfontconfig.so.1.11.1  # [linux]
+  skip: True                      # [win]
+  binary_has_prefix_files:        # [unix]
+    - lib/libfontconfig.so.1.*    # [linux]
+    - lib/libfontconfig.*.dylib*  # [osx]
+  run_exports:
+    # remove symbols basically never (once, in 2006).
+    #    https://abi-laboratory.pro/tracker/timeline/fontconfig/
+    - {{ pin_subpackage('fontconfig') }}
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - make
     - pkg-config
     - gperf
     - libtool
-    - freetype 2.8.1
-    - libiconv 1.15
-    - libpng >=1.6.32,<1.6.35
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
-    - libuuid  # [not win]
+    - automake
+    - autoconf
 
-  run:
-    - freetype 2.8.1
-    - libiconv 1.15
-    - libpng >=1.6.32,<1.6.35
-    - libxml2 2.9.*
-    - icu 58.*  # [not win]
-    - libuuid  # [not win]
+  host:
+    - freetype
+    - icu                         # [not win]
+    - libpng
+    - libxml2
+    - libiconv                    # [not linux and not win]
+    - libuuid                     # [not win]
 
 test:
   commands:
@@ -54,18 +57,22 @@ test:
     - test -f "${PREFIX}/lib/libfontconfig.a"
     - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
     - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
   license_file: COPYING
   summary: 'A library for configuring and customizing font access.'
+  description: |
+    Fontconfig is a library designed to provide system-wide font configuration,
+    customization and application access.
+  doc_url: https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
+  dev_url: https://cgit.freedesktop.org/fontconfig/
 
 extra:
   recipe-maintainers:
     - ccordoba12
     - jakirkham
+    - mingwandroid
     - ocefpaf
     - pkgw
