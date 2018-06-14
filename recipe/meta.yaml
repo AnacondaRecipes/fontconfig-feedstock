@@ -13,7 +13,7 @@ source:
     - fcf.patch       # [linux]
 
 build:
-  number: 0
+  number: 1
   skip: True                      # [win]
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
@@ -40,7 +40,7 @@ requirements:
     - libpng
     - libxml2
     - libiconv                    # [not linux and not win]
-    - libuuid                     # [not win]
+    - libuuid                     # [linux]
 
 test:
   commands:
