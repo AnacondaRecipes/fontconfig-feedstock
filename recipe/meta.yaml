@@ -1,4 +1,4 @@
-{% set version = "2.13.0" %}
+{% set version = "2.13.93" %}
 
 package:
   name: fontconfig
@@ -6,7 +6,7 @@ package:
 
 source:
   url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
-  sha256: 91dde8492155b7f34bb95079e79be92f1df353fcc682c19be90762fd3e12eeb9
+  sha256: 1316959c13d70d14443c68510129432a1e32f5e01a3526dec11b7834978809cb
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
