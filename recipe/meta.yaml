@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.gz
-  sha256: 1316959c13d70d14443c68510129432a1e32f5e01a3526dec11b7834978809cb
+  sha256: 246d1640a7e54fba697b28e4445f4d9eb63dda1b511d19986249368ee7191882
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
