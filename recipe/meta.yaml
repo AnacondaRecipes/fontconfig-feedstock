@@ -11,7 +11,7 @@ source:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
-    - 0001-Disable-test-bz106632.patch    # [win or osx]
+#    - 0001-Disable-test-bz106632.patch    # [win or osx]
 
 build:
   number: 0
