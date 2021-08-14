@@ -1,9 +1,15 @@
 #!/bin/bash
 
+# Get an updated config.sub and config.guess
+cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* .
+
 sed -i.orig s:'@PREFIX@':"${PREFIX}":g src/fccfg.c
 
 # So that -Wl,--as-needed works (sorted to appear before before libs)
 autoreconf -vfi
+
+# Get an updated config.sub and config.guess
+cp -r ${BUILD_PREFIX}/share/libtool/build-aux/config.* .
 
 # See:
 # https://github.com/Homebrew/homebrew-core/blob/master/Formula/fontconfig.rb
@@ -30,8 +36,9 @@ fi
 
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
-make check ${VERBOSE_AT}
 make install
+
+make check ${VERBOSE_AT}
 
 # Remove computed cache with local fonts
 rm -Rf "${PREFIX}"/var/cache/fontconfig

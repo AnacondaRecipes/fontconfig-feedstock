@@ -12,7 +12,7 @@ source:
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
     - 0001-Disable-test-bz106632.patch    # [win or osx]
-
+    - osx_arm64.patch  # [osx and arm64]
 build:
   number: 0
   skip: True                      # [win]
@@ -30,6 +30,7 @@ requirements:
     - make
     - pkg-config
     - gperf
+    - expat
     - gettext                     # [not win]
     - libtool
     - automake
@@ -41,7 +42,7 @@ requirements:
     # Commenting out to avoid overdepending errors on macOS; `./configure`
     # fails to correctly pick up libiconv, even with explicitly invoked with
     # `--enable-iconv` and `--with-libiconv-prefix`.
-    #- libiconv                    # [not linux and not win]
+    - libiconv                    # [not linux and not win]
     - libuuid                     # [linux]
 
 test:
