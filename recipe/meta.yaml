@@ -35,7 +35,9 @@ requirements:
     - libtool
     - automake
     - autoconf
-
+    - patch       # [not win]
+    - m2-patch    # [win]
+ 
   host:
     - freetype
     - libxml2
