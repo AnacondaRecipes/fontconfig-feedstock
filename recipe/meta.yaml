@@ -1,21 +1,22 @@
-{% set version = "2.13.1" %}
+{% set version = "2.14.0" %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: fontconfig
   version: {{ version }}
 
 source:
-  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
-  sha256: f655dd2a986d7aa97e052261b36aa67b0a64989496361eca8d604e6414006741
+  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.gz
+  sha256: b8f607d556e8257da2f3616b4d704be30fd73bd71e367355ca78963f9a7f0434
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     - fcf.patch       # [linux]
-    - 0001-Disable-test-bz106632.patch    # [win or osx]
+    # - 0001-Disable-test-bz106632.patch    # [win or osx]
     - osx_arm64.patch  # [osx and arm64]
 build:
   number: 0
-  skip: True                      # [win]
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
     - lib/libfontconfig.*.dylib*  # [osx]
@@ -27,16 +28,17 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - make
-    - pkg-config
-    - gperf
+    - {{ posix }}gperf
+    - {{ posix }}patch
     - expat
+    - make                        # [not win]
+    - pkg-config                  # [not win]
     - gettext                     # [not win]
-    - libtool
-    - automake
-    - autoconf
-    - patch       # [not win]
-    - m2-patch    # [win]
+    - libtool                     # [not win]
+    - automake                    # [not win]
+    - autoconf                    # [not win]
+    - meson                       # [win]
+    - ninja                       # [win]
  
   host:
     - freetype
@@ -44,7 +46,7 @@ requirements:
     # Commenting out to avoid overdepending errors on macOS; `./configure`
     # fails to correctly pick up libiconv, even with explicitly invoked with
     # `--enable-iconv` and `--with-libiconv-prefix`.
-    - libiconv                    # [not linux and not win]
+    - libiconv                    # [not linux]
     - libuuid                     # [linux]
 
 test:
