@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
+  url: https://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.bz2
   sha256: f655dd2a986d7aa97e052261b36aa67b0a64989496361eca8d604e6414006741
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
@@ -71,15 +71,18 @@ test:
     - fc-list
 
 about:
-  home: http://www.freedesktop.org/wiki/Software/fontconfig/
+  home: https://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
   license_file: COPYING
+  license_family: MIT
+  license_url: https://opensource.org/licenses/MIT
   summary: 'A library for configuring and customizing font access.'
   description: |
     Fontconfig is a library designed to provide system-wide font configuration,
     customization and application access.
   doc_url: https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
-  dev_url: https://cgit.freedesktop.org/fontconfig/
+  doc_source_url: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/tree/main/doc
+  dev_url: https://gitlab.freedesktop.org/fontconfig/fontconfig
 
 extra:
   recipe-maintainers:
