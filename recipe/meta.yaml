@@ -14,7 +14,7 @@ source:
     - 0001-Disable-test-bz106632.patch    # [win or osx]
     - osx_arm64.patch  # [osx and arm64]
 build:
-  number: 0
+  number: 1
   skip: True                      # [win]
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
@@ -48,6 +48,8 @@ requirements:
     - libuuid                     # [linux]
 
 test:
+  requires:
+    - font-ttf-dejavu-sans-mono
   commands:
     # Test CLI.
     - fc-cache --help
@@ -63,6 +65,10 @@ test:
     - test -f "${PREFIX}/lib/libfontconfig.a"
     - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
     - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
+
+    # Test for correct parsing of font .conf files.
+    # This should list a Dejavu-sans font
+    - fc-list
 
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
