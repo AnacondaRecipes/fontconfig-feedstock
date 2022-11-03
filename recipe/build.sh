@@ -28,6 +28,14 @@ else
   FONT_DIRS=--with-add-fonts="${PREFIX}"/fonts
 fi
 
+# This corrects a bug which appeared on s390x with compiler optimizations
+# turned on. The string literal "fontconfig" appears twice in the file
+# src/fcxml.c. It seems that the compiler optimizes to use the same space in
+# memory for both, because the occurrence in FcStarDoctypeDecl is corrupted,
+# leading the strcmp in that function to raise a false positive. The line below
+# prevents this optimization from happening.
+export CFLAGS="${CFLAGS} -fno-merge-constants"
+
 ./configure --prefix="${PREFIX}"                \
             --enable-libxml2                    \
             --enable-static                     \
