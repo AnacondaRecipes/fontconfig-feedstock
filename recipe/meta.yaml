@@ -41,10 +41,6 @@ requirements:
   host:
     - freetype
     - libxml2
-    # Commenting out to avoid overdepending errors on macOS; `./configure`
-    # fails to correctly pick up libiconv, even with explicitly invoked with
-    # `--enable-iconv` and `--with-libiconv-prefix`.
-    - libiconv                    # [not linux and not win]
     - libuuid                     # [linux]
 
 about:
