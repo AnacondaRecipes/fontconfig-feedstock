@@ -47,29 +47,6 @@ requirements:
     - libiconv                    # [not linux and not win]
     - libuuid                     # [linux]
 
-test:
-  requires:
-    - font-ttf-dejavu-sans-mono
-  commands:
-    # Test CLI.
-    - fc-cache --help
-    - fc-cat --help
-    - fc-list --help
-    - fc-match --help
-    - fc-pattern --help
-    - fc-query --help
-    - fc-scan --help
-    - fc-validate --help
-
-    # Test for libraries.
-    - test -f "${PREFIX}/lib/libfontconfig.a"
-    - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
-    - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
-
-    # Test for correct parsing of font .conf files.
-    # This should list a Dejavu-sans font
-    - fc-list
-
 about:
   home: https://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
