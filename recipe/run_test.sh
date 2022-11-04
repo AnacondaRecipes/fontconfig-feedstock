@@ -12,7 +12,6 @@ fc-validate --help
 
 # Test for libraries.
 echo "Testing for presence of libfontconfig.a in build output"
-echo ${target_platform}
 test -f "${PREFIX}/lib/libfontconfig.a"
 if [[ ${target_platform} == osx-* ]]; then # osx-*?
     echo "Testing for presence of libfontconfig.dylib in build output"
@@ -23,6 +22,6 @@ else
 fi
 
 # Test for correct parsing of font .conf files.
-# This should not give anything to sterr (for example, "invalid doctype "fontconfig"", see PR #6.
+# This should not give any errors to sterr (for example, "invalid doctype "fontconfig"", see PR #6.
 echo "Testing for correct parsing of font .conf files"
-fc-list 2> /dev/stdout 1> /dev/null | (if grep .; then exit -1; fi)
+fc-list 2> /dev/stdout 1> /dev/null | (if grep "Fontconfig error"; then exit -1; fi)
