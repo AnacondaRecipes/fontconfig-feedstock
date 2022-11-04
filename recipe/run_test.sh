@@ -13,7 +13,7 @@ fc-validate --help
 # Test for libraries.
 echo "Testing for presence of libfontconfig.a in build output"
 test -f "${PREFIX}/lib/libfontconfig.a"
-if [[ ${target_platform} == osx-* ]]; then # osx-*?
+if [[ ${target_platform} == osx-* ]]; then
     echo "Testing for presence of libfontconfig.dylib in build output"
     test -f "${PREFIX}/lib/libfontconfig.dylib"
 else
