@@ -14,7 +14,7 @@ source:
     - 0001-Disable-test-bz106632.patch    # [win or osx]
     - osx_arm64.patch  # [osx and arm64]
 build:
-  number: 1
+  number: 0
   skip: True                      # [win]
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
