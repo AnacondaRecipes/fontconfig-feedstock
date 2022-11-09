@@ -14,7 +14,7 @@ source:
     - 0001-Disable-test-bz106632.patch    # [win or osx]
     - osx_arm64.patch  # [osx and arm64]
 build:
-  number: 0
+  number: 1
   skip: True                      # [win]
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
@@ -41,39 +41,21 @@ requirements:
   host:
     - freetype
     - libxml2
-    # Commenting out to avoid overdepending errors on macOS; `./configure`
-    # fails to correctly pick up libiconv, even with explicitly invoked with
-    # `--enable-iconv` and `--with-libiconv-prefix`.
-    - libiconv                    # [not linux and not win]
     - libuuid                     # [linux]
 
-test:
-  commands:
-    # Test CLI.
-    - fc-cache --help
-    - fc-cat --help
-    - fc-list --help
-    - fc-match --help
-    - fc-pattern --help
-    - fc-query --help
-    - fc-scan --help
-    - fc-validate --help
-
-    # Test for libraries.
-    - test -f "${PREFIX}/lib/libfontconfig.a"
-    - test -f "${PREFIX}/lib/libfontconfig.dylib"  # [osx]
-    - test -f "${PREFIX}/lib/libfontconfig.so"     # [linux]
-
 about:
-  home: http://www.freedesktop.org/wiki/Software/fontconfig/
+  home: https://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
   license_file: COPYING
+  license_family: MIT
+  license_url: https://opensource.org/licenses/MIT
   summary: 'A library for configuring and customizing font access.'
   description: |
     Fontconfig is a library designed to provide system-wide font configuration,
     customization and application access.
   doc_url: https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
-  dev_url: https://cgit.freedesktop.org/fontconfig/
+  doc_source_url: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/tree/main/doc
+  dev_url: https://gitlab.freedesktop.org/fontconfig/fontconfig
 
 extra:
   recipe-maintainers:
