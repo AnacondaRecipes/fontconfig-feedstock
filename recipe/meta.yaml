@@ -10,9 +10,8 @@ source:
   patches:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
-    - fcf.patch       # [linux]
-    - 0001-Disable-test-bz106632.patch    # [win or osx]
-    - osx_arm64.patch  # [osx and arm64]
+    # - fcf.patch       # [linux]
+          # - osx_arm64.patch  # [osx and arm64]
 build:
   number: 0
   skip: True                      # [win]
