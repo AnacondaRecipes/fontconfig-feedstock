@@ -11,7 +11,7 @@ source:
     # This patch won't be submitted upstream. It's use here is to ensure the prefix used
     # to refer to the `fonts.conf` file.
     # - fcf.patch       # [linux]
-    - test_fix.patch
+    - test_fix.patch    # [osx]
 build:
   number: 0
   skip: True                      # [win]
