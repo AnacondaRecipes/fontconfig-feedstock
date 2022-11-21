@@ -41,7 +41,7 @@ requirements:
     - freetype
     - libxml2
     - libuuid                     # [linux]
-
+    - unzip
 about:
   home: https://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
