@@ -45,6 +45,7 @@ export CFLAGS="${CFLAGS} -fno-merge-constants"
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
 make install
+alias touch=gtouch
 
 make check ${VERBOSE_AT}
 

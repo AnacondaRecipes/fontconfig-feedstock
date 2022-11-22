@@ -7,8 +7,6 @@ package:
 source:
   url: https://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.gz
   sha256: ae480e9ca34382790312ff062c625ec70df94d6d9a9366e2b2b3d525f7f90387
-  patches:
-    - test_fix.patch    # [osx]
 
 build:
   number: 0
@@ -32,13 +30,12 @@ requirements:
     - libtool
     - automake
     - autoconf
-    - patch       # [not win]
-    - m2-patch    # [win]
 
   host:
     - freetype
     - libxml2
     - unzip
+    - coreutils  # [osx]
 
 about:
   home: https://www.freedesktop.org/wiki/Software/fontconfig/
