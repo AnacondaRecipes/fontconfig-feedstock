@@ -26,7 +26,7 @@ requirements:
     - pkg-config
     - gperf
     - expat
-    - gettext     # [not win]
+    - gettext 
     - libtool
     - automake
     - autoconf
