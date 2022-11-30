@@ -40,7 +40,7 @@ requirements:
     - freetype
     - libxml2
     - coreutils  # [osx]
-    - unzip
+    - unzip      # Required for MT-safe global config test
 about:
   home: https://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
