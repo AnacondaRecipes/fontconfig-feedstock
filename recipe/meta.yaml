@@ -34,7 +34,7 @@ requirements:
   host:
     - freetype
     - libxml2
-    - unzip
+    - libuuid
     - coreutils  # [osx]
 
 about:
