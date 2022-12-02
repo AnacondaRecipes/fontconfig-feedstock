@@ -49,7 +49,6 @@ about:
   license: MIT
   license_file: COPYING
   license_family: MIT
-  license_url: https://opensource.org/licenses/MIT
   summary: 'A library for configuring and customizing font access.'
   description: |
     Fontconfig is a library designed to provide system-wide font configuration,
