@@ -46,6 +46,11 @@ export CFLAGS="${CFLAGS} -fno-merge-constants"
 make -j${CPU_COUNT} ${VERBOSE_AT}
 make install
 
+# alias for macOSX to allow "Keep mtime of the font directory" test to pass in run-test.sh
+if [[ "${target_platform}" == osx-* ]]; then
+  alias touch=gtouch
+fi
+
 make check ${VERBOSE_AT}
 
 # Remove computed cache with local fonts

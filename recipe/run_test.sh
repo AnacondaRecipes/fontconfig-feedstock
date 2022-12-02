@@ -25,3 +25,6 @@ fi
 # This should not give any errors to sterr (for example, "invalid doctype "fontconfig"", see PR #6.
 echo "Testing for correct parsing of font .conf files"
 fc-list 2> /dev/stdout 1> /dev/null | (if grep "Fontconfig error"; then exit -1; fi)
+
+# Test for pkg-config
+test -f ${PREFIX}/lib/pkgconfig/fontconfig.pc
