@@ -43,8 +43,6 @@ requirements:
 test:
   requires:
     - pkg-config
-  commands:
-    - test -f ${PREFIX}/lib/pkgconfig/fontconfig.pc              # [unix]
 
 about:
   home: https://www.freedesktop.org/wiki/Software/fontconfig/
