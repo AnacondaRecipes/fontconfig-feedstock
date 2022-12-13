@@ -64,13 +64,13 @@ about:
     Fontconfig is a library designed to provide system-wide font configuration,
     customization and application access.
   doc_url: https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
-  doc_source_url: https://gitlab.freedesktop.org/fontconfig/fontconfig/-/tree/main/doc
   dev_url: https://gitlab.freedesktop.org/fontconfig/fontconfig
 
 extra:
   recipe-maintainers:
     - ccordoba12
     - jakirkham
+    - katietz
     - mingwandroid
     - ocefpaf
     - pkgw
