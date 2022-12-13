@@ -11,8 +11,7 @@ source:
     - fcf.patch       # [linux]
 
 build:
-  number: 0
-  skip: True                      # [win]
+  number: 1
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
     - lib/libfontconfig.*.dylib*  # [osx]
@@ -26,19 +25,27 @@ requirements:
     - {{ compiler('c') }}
     - make
     - pkg-config
-    - gperf
+    - gperf  # [not win]
+    - m2-gperf  # [win]
     - expat
     - gettext 
     - libtool
     - automake
     - autoconf
     - patch
+    - python  # [win]
+    - meson   # [win]
+    - ninja   # [win]
 
   host:
     - freetype
     - libxml2
     - coreutils  # [osx]
     - unzip      # Required for MT-safe global config test
+    - expat
+    - libiconv   # [win]
+    - libuuid    # [linux]
+    - zlib
 
 test:
   requires:
