@@ -1,12 +1,5 @@
 
-fc-cache --help
-fc-cat --help
 fc-list --help
-fc-match --help
-fc-pattern --help
-fc-query --help
-fc-scan --help
-fc-validate --help
 
 REM Test for libraries.
 echo "Testing for presence of libfontconfig in build output"
