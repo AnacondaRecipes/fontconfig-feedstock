@@ -15,3 +15,6 @@ if not exist %PREFIX%\Library\bin\fontconfig-1.dll exit /b 1
 
 rem check for pkgconfig file ...
 if not exist %PREFIX%\Library\lib\pkgconfig\fontconfig.pc exit /b 1
+
+exit /b 0
+
