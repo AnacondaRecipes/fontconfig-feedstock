@@ -14,7 +14,7 @@ source:
     - 0001-Disable-test-bz106632.patch    # [win or osx]
     - osx_arm64.patch  # [osx and arm64]
 build:
-  number: 0
+  number: 1
   skip: True                      # [win]
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
@@ -37,10 +37,10 @@ requirements:
     - autoconf
     - patch       # [not win]
     - m2-patch    # [win]
- 
+
   host:
     - freetype
-    - libxml2
+    - libxml2 {{ libxml2 }}
     # Commenting out to avoid overdepending errors on macOS; `./configure`
     # fails to correctly pick up libiconv, even with explicitly invoked with
     # `--enable-iconv` and `--with-libiconv-prefix`.
@@ -67,6 +67,7 @@ test:
 about:
   home: http://www.freedesktop.org/wiki/Software/fontconfig/
   license: MIT
+  license_family: MIT
   license_file: COPYING
   summary: 'A library for configuring and customizing font access.'
   description: |
