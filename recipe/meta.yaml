@@ -40,7 +40,7 @@ requirements:
     - ninja   # [win]
   host:
     - freetype
-    - libxml2 {{ libxml2 }}
+    - libxml2 2.10
     - coreutils  # [osx]
     # Required for MT-safe global config test
     - unzip      # [not win]
