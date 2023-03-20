@@ -39,7 +39,7 @@ requirements:
     - meson   # [win]
     - ninja   # [win]
   host:
-    - freetype 2.10
+    - freetype
     - libxml2 {{ libxml2 }}
     - coreutils  # [osx]
     # Required for MT-safe global config test
@@ -47,7 +47,7 @@ requirements:
     - expat
     - libiconv   # [win]
     - libuuid    # [linux]
-    - zlib 1.2.13
+    - zlib
 
 test:
   requires:
