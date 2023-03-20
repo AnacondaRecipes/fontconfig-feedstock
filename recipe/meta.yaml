@@ -39,7 +39,7 @@ requirements:
     - m2-patch    # [win]
 
   host:
-    - freetype
+    - freetype 2.10
     - libxml2 {{ libxml2 }}
     # Commenting out to avoid overdepending errors on macOS; `./configure`
     # fails to correctly pick up libiconv, even with explicitly invoked with
