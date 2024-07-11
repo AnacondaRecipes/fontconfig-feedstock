@@ -12,7 +12,7 @@ source:
     - windows-compat.patch  # [win]
 
 build:
-  number: 2
+  number: 3
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
     - lib/libfontconfig.*.dylib*  # [osx]
@@ -40,7 +40,7 @@ requirements:
     - ninja   # [win]
   host:
     - freetype
-    - libxml2 2.10
+    - libxml2 {{ libxml2 }}
     - coreutils  # [osx]
     # Required for MT-safe global config test
     - unzip      # [not win]
