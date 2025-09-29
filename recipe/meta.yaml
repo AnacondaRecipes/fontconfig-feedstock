@@ -36,7 +36,6 @@ requirements:
     - automake  # [not win]
     - autoconf  # [not win]
     - patch     # [not win]
-    - m2-patch  # [win]
     - python  # [win]
     - meson   # [win]
     - ninja   # [win]
@@ -49,7 +48,7 @@ requirements:
     - expat
     - libiconv   # [win]
     - libuuid    # [linux]
-    - zlib
+    - zlib {{ zlib }}
 
 test:
   requires:
