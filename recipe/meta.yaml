@@ -1,18 +1,19 @@
-{% set version = "2.14.1" %}
+{% set name = "fontconfig" %}
+{% set version = "2.15.0" %}
 
 package:
-  name: fontconfig
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://www.freedesktop.org/software/fontconfig/release/fontconfig-{{ version }}.tar.gz
-  sha256: ae480e9ca34382790312ff062c625ec70df94d6d9a9366e2b2b3d525f7f90387
+  url: https://www.freedesktop.org/software/{{ name }}/release/{{ name }}-{{ version }}.tar.gz
+  sha256: f5f359d6332861bd497570848fcb42520964a9e83d5e3abe397b6b6db9bcaaf4
   patches:                  # [linux or win]
     - fcf.patch             # [linux]
     - windows-compat.patch  # [win]
 
 build:
-  number: 3
+  number: 0
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
     - lib/libfontconfig.*.dylib*  # [osx]
@@ -23,6 +24,7 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - make   # [not win]
     - pkg-config
@@ -34,7 +36,6 @@ requirements:
     - automake  # [not win]
     - autoconf  # [not win]
     - patch     # [not win]
-    - m2-patch  # [win]
     - python  # [win]
     - meson   # [win]
     - ninja   # [win]
@@ -47,18 +48,18 @@ requirements:
     - expat
     - libiconv   # [win]
     - libuuid    # [linux]
-    - zlib
+    - zlib {{ zlib }}
 
 test:
   requires:
     - pkg-config
 
 about:
-  home: https://www.freedesktop.org/wiki/Software/fontconfig/
+  home: https://www.freedesktop.org/wiki/Software/fontconfig
   license: MIT
   license_file: COPYING
   license_family: MIT
-  summary: 'A library for configuring and customizing font access.'
+  summary: A library for configuring and customizing font access
   description: |
     Fontconfig is a library designed to provide system-wide font configuration,
     customization and application access.
