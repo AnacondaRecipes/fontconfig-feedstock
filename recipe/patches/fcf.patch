@@ -1,0 +1,16 @@
+diff --git src/fccfg.c src/fccfg.c
+index 6377fd7..8175f85 100644
+--- a/src/fccfg.c
++++ b/src/fccfg.c
+@@ -2296,9 +2296,7 @@ DllMain (HINSTANCE hinstDLL,
+ 
+ #endif /* !_WIN32 */
+ 
+-#ifndef FONTCONFIG_FILE
+-#  define FONTCONFIG_FILE "fonts.conf"
+-#endif
++#define FONTCONFIG_FILE	"@PREFIX@/etc/fonts/fonts.conf"
+ 
+ static FcChar8 *
+ FcConfigFileExists (const FcChar8 *dir, const FcChar8 *file)
+ 
