@@ -1,3 +1,5 @@
 # the conda-build parameters to use for disabling --skip-existing
 build_parameters:
   - "--suppress-variables"
+channels:
+  - https://staging.continuum.io/preprod-pbp/fs/gettext-feedstock/pr9/8bee633
