@@ -1,5 +1,7 @@
-diff --git a/conf.d/link_confs.py b/conf.d/link_confs.py
-index f92e1c3..5ae221b 100644
+- Windows Conda packages don't seem to handle symlinks correctly, so we have to copy
+- Our `gperf` requires Unix newlines even on Windows
+- conda-forge needs different logic for location fonts.conf in the non-DLL case
+
 diff --git a/conf.d/link_confs.py b/conf.d/link_confs.py
 index f92e1c3..31dbae6 100644
 --- a/conf.d/link_confs.py
