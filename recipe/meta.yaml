@@ -9,9 +9,8 @@ source:
   url: https://gitlab.freedesktop.org/{{ name }}/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: a84d41b57cfb015783d7973b398c26d8763a64b803f97f31fa126fd2aa5eaaca
   patches:
-    - patches/fcf.patch             # [linux]
+    - patches/fcf.patch             # [unix]
     - patches/windows-compat.patch  # [win]
-    # - patches/fix_test_url.patch
 
 build:
   number: 0

@@ -26,3 +26,31 @@ index 4bd1e4d..477bc63 100644
  
  static FcChar8 *
  FcConfigFileExists (const FcChar8 *dir, const FcChar8 *file)
+ diff --git a/src/fccompat.c b/src/fccompat.c
+index ae1d8a51..97c288ae 100644
+--- a/src/fccompat.c
++++ b/src/fccompat.c
+@@ -41,6 +41,9 @@
+ #  include <unistd.h>
+ #endif
+ #include <locale.h>
++#ifdef __APPLE__
++#include <xlocale.h>
++#endif
+ #include <stdarg.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/fcint.h b/src/fcint.h
+index 1fd9e1e5..f870c298 100644
+--- a/src/fcint.h
++++ b/src/fcint.h
+@@ -37,6 +37,9 @@
+ #include <float.h>
+ #include <limits.h>
+ #include <locale.h>
++#ifdef __APPLE__
++#include <xlocale.h>
++#endif
+ #include <math.h>
+ #include <stdio.h>
+ #include <stdlib.h>
