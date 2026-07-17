@@ -1,0 +1,46 @@
+diff --git a/test/meson.build b/test/meson.build
+index e1acae28..dac1ae56 100644
+--- a/test/meson.build
++++ b/test/meson.build
+@@ -100,7 +100,7 @@ else
+ endif
+ 
+ if pytest.found()
+-  pytest_args = ['--tap', '-vv', '--assert=plain']
++  pytest_args = ['-vv', '--assert=plain']
+   if not get_option('tests-external-fonts').allowed()
+     pytest_args += ['-m', 'not network']
+   endif
+@@ -120,7 +120,6 @@ if pytest.found()
+       'FC_CACHE_VERSION=@0@'.format(cacheversion),
+       'FC_CACHE_SNAP_VERSION=@0@'.format(cachesnapversion),
+     ],
+-    protocol: 'tap',
+     timeout: 600,
+     depends: fetch_test_fonts,
+   )
+diff --git a/test/fctest/__init__.py b/test/fctest/__init__.py
+index 6e6a3fbe..60d6913c 100644
+--- a/test/fctest/__init__.py
++++ b/test/fctest/__init__.py
+@@ -62,10 +62,18 @@ class FcTest:
+         self._conffile = NamedTemporaryFile(
+             prefix="fontconfig.", suffix=".host.conf", mode="w", delete_on_close=False
+         )
+-        self._builddir = self._env.get(
++        # os.environ.copy() on Windows can normalize key casing so a
++        # plain-string lookup of "builddir"/"srcdir" silently misses even
++        # when the variable is present; look up case-insensitively.
++        def _env_get_ci(name, default):
++            for k, v in self._env.items():
++                if k.lower() == name.lower():
++                    return v
++            return default
++        self._builddir = _env_get_ci(
+             "builddir", str(Path(__file__).parents[2] / "build")
+         )
+-        self._srcdir = self._env.get("srcdir", str(Path(__file__).parents[2]))
++        self._srcdir = _env_get_ci("srcdir", str(Path(__file__).parents[2]))
+         self._exeext = self._env.get(
+             "EXEEXT", ".exe" if sys.platform == "win32" else ""
+         )
