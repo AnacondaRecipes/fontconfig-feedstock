@@ -1,5 +1,18 @@
-diff --git src/fccfg.c src/fccfg.c
-index 6377fd7..8175f85 100644
+diff --git a/meson.build b/meson.build
+index e742ea6..1ba0f29 100644
+--- a/meson.build
++++ b/meson.build
+@@ -333,7 +333,7 @@ if default_fonts_dirs == ['yes']
+   elif host_machine.system() == 'android'
+     fc_fonts_paths = ['/system/fonts/', '/product/fonts/']
+   else
+-    fc_fonts_paths = ['/usr/share/fonts', '/usr/local/share/fonts']
++    fc_fonts_paths = ['/usr/share/fonts', join_paths(prefix, 'share', 'fonts'), join_paths(prefix, 'fonts')]
+   endif
+ else
+   fc_fonts_paths = default_fonts_dirs
+diff --git a/src/fccfg.c b/src/fccfg.c
+index 4bd1e4d..477bc63 100644
 --- a/src/fccfg.c
 +++ b/src/fccfg.c
 @@ -2296,9 +2296,7 @@ DllMain (HINSTANCE hinstDLL,
@@ -13,4 +26,31 @@ index 6377fd7..8175f85 100644
  
  static FcChar8 *
  FcConfigFileExists (const FcChar8 *dir, const FcChar8 *file)
- 
+ diff --git a/src/fccompat.c b/src/fccompat.c
+index ae1d8a51..97c288ae 100644
+--- a/src/fccompat.c
++++ b/src/fccompat.c
+@@ -41,6 +41,9 @@
+ #  include <unistd.h>
+ #endif
+ #include <locale.h>
++#ifdef __APPLE__
++#include <xlocale.h>
++#endif
+ #include <stdarg.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/fcint.h b/src/fcint.h
+index 1fd9e1e5..f870c298 100644
+--- a/src/fcint.h
++++ b/src/fcint.h
+@@ -37,6 +37,9 @@
+ #include <float.h>
+ #include <limits.h>
+ #include <locale.h>
++#ifdef __APPLE__
++#include <xlocale.h>
++#endif
+ #include <math.h>
+ #include <stdio.h>
+ #include <stdlib.h>

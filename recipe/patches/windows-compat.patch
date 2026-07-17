@@ -1,5 +1,7 @@
-diff --git a/conf.d/link_confs.py b/conf.d/link_confs.py
-index f92e1c3..5ae221b 100644
+- Windows Conda packages don't seem to handle symlinks correctly, so we have to copy
+- Our `gperf` requires Unix newlines even on Windows
+- conda-forge needs different logic for location fonts.conf in the non-DLL case
+
 diff --git a/conf.d/link_confs.py b/conf.d/link_confs.py
 index f92e1c3..31dbae6 100644
 --- a/conf.d/link_confs.py
@@ -76,3 +78,83 @@ index 477bc63..638ec20 100644
      }
  #endif
      dir = (FcChar8 *)FONTCONFIG_PATH;
+diff --git a/fc-case/fc-case.py b/fc-case/fc-case.py
+index be808b30..9519132e 100755
+--- a/fc-case/fc-case.py
++++ b/fc-case/fc-case.py
+@@ -110,7 +110,7 @@ if __name__=='__main__':
+     maxExpand = 0
+ 
+     # Read the standard Unicode CaseFolding.txt file
+-    with open(args.case_folding_file, 'r', encoding='utf-8') as casefile:
++    with open(args.case_folding_file, 'r', encoding='utf-8', newline='\n') as casefile:
+         for cnt, line in enumerate(casefile):
+             if not line or not line[0] in string.hexdigits:
+                 continue
+@@ -189,7 +189,7 @@ if __name__=='__main__':
+ 
+     # Open output file
+     if args.output_file:
+-        sys.stdout = open(args.output_file, 'w', encoding='utf-8')
++        sys.stdout = open(args.output_file, 'w', encoding='utf-8', newline='\n')
+ 
+     print('/*')
+     print(' * This file was generated against CaseFolding.txt from'
+diff --git a/fc-genericfamily/fc-genericfamily.py b/fc-genericfamily/fc-genericfamily.py
+index fe9887b0..3473f236 100755
+--- a/fc-genericfamily/fc-genericfamily.py
++++ b/fc-genericfamily/fc-genericfamily.py
+@@ -153,8 +153,8 @@ def main():
+     parser.add_argument(
+         "-o",
+         "--output",
+-        type=argparse.FileType("w", encoding="utf-8"),
+-        default=sys.stdout,
++        type=str,
++        default=None,
+         help="Output file (default: stdout)",
+     )
+     parser.add_argument(
+@@ -178,9 +178,13 @@ def main():
+         sys.exit(1)
+ 
+     # Generate output
+-    with args.output:
+-        args.output.write(gen_header())
+-        args.output.write(gen_gperf_code(family_map))
++    if args.output is None:
++        sys.stdout.write(gen_header())
++        sys.stdout.write(gen_gperf_code(family_map))
++    else:
++        with open(args.output, "w", encoding="utf-8", newline="\n") as f:
++            f.write(gen_header())
++            f.write(gen_gperf_code(family_map))
+ 
+     return 0
+ 
+diff --git a/fc-lang/fc-lang.py b/fc-lang/fc-lang.py
+index 8facea65..85dfb761 100755
+--- a/fc-lang/fc-lang.py
++++ b/fc-lang/fc-lang.py
+@@ -83,7 +83,7 @@ def get_lang(c_name):
+ 
+ def read_orth_file(file_name):
+     lines = []
+-    with open(file_name, 'r', encoding='utf-8') as orth_file:
++    with open(file_name, 'r', encoding='utf-8', newline='\n') as orth_file:
+         for num, line in enumerate(orth_file):
+             if line.startswith('include '):
+                 include_fn = line[8:].strip()
+@@ -158,11 +158,11 @@ if __name__=='__main__':
+ 
+     # Open output file
+     if args.output_file:
+-        sys.stdout = open(args.output_file, 'w', encoding='utf-8')
++        sys.stdout = open(args.output_file, 'w', encoding='utf-8', newline='\n')
+ 
+     # Read the template file
+     if args.template_file:
+-        tmpl_file = open(args.template_file, 'r', encoding='utf-8')
++        tmpl_file = open(args.template_file, 'r', encoding='utf-8', newline='\n')
+     else:
+         tmpl_file = sys.stdin

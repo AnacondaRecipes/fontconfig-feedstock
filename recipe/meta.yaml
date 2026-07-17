@@ -1,5 +1,5 @@
 {% set name = "fontconfig" %}
-{% set version = "2.17.1" %}
+{% set version = "2.18.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://gitlab.freedesktop.org/{{ name }}/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 82e73b26adad651b236e5f5d4b3074daf8ff0910188808496326bd3449e5261d
+  sha256: a84d41b57cfb015783d7973b398c26d8763a64b803f97f31fa126fd2aa5eaaca
   patches:
-    - patches/fcf.patch             # [linux]
+    - patches/fcf.patch             # [unix]
     - patches/windows-compat.patch  # [win]
-    - patches/fix_test_url.patch
+    - patches/fix-test.patch        # [win]
 
 build:
   number: 0
@@ -30,7 +30,7 @@ requirements:
     - make   # [not win]
     - pkg-config
     - gperf  # [not win]
-    - m2-gperf  # [win]
+    - msys2-gperf  # [win]
     - expat
     - gettext   # [not win]
     - libtool   # [not win]
