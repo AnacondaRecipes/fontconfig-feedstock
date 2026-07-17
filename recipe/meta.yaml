@@ -29,7 +29,7 @@ requirements:
     - make   # [not win]
     - pkg-config
     - gperf  # [not win]
-    - m2-gperf  # [win]
+    - msys2-gperf  # [win]
     - expat
     - gettext   # [not win]
     - libtool   # [not win]
