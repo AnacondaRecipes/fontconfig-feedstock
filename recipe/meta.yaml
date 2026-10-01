@@ -40,10 +40,10 @@ requirements:
     - python  # [win]
     - meson   # [win]
     - ninja   # [win]
+    - coreutils  # [osx]
   host:
     - freetype
     - libxml2 {{ libxml2 }}
-    - coreutils  # [osx]
     - expat
     - libiconv   # [win]
     - libuuid    # [linux]
