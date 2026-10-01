@@ -36,17 +36,16 @@ requirements:
     - libtool   # [not win]
     - automake  # [not win]
     - autoconf  # [not win]
-    - patch     # [not win]
     - python  # [win]
     - meson   # [win]
     - ninja   # [win]
     - coreutils  # [osx]
   host:
-    - freetype
+    - freetype {{ freetype }}
     - libxml2 {{ libxml2 }}
-    - expat
-    - libiconv   # [win]
-    - libuuid    # [linux]
+    - libexpat {{ libexpat }}
+    - libiconv {{ libiconv }}   # [win]
+    - libuuid {{ libuuid }}    # [linux]
     - zlib {{ zlib }}
 
 test:
@@ -73,3 +72,5 @@ extra:
     - mingwandroid
     - ocefpaf
     - pkgw
+  skip-lints:
+    - python_build_tools_in_host
