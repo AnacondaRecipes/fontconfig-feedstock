@@ -44,8 +44,6 @@ requirements:
     - freetype
     - libxml2 {{ libxml2 }}
     - coreutils  # [osx]
-    # Required for MT-safe global config test
-    - unzip      # [not win]
     - expat
     - libiconv   # [win]
     - libuuid    # [linux]
