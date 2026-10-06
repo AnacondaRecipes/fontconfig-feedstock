@@ -14,7 +14,7 @@ source:
     - patches/fix-test.patch        # [win]
 
 build:
-  number: 0
+  number: 1
   binary_has_prefix_files:        # [unix]
     - lib/libfontconfig.so.1.*    # [linux]
     - lib/libfontconfig.*.dylib*  # [osx]
@@ -36,19 +36,16 @@ requirements:
     - libtool   # [not win]
     - automake  # [not win]
     - autoconf  # [not win]
-    - patch     # [not win]
     - python  # [win]
     - meson   # [win]
     - ninja   # [win]
-  host:
-    - freetype
-    - libxml2 {{ libxml2 }}
     - coreutils  # [osx]
-    # Required for MT-safe global config test
-    - unzip      # [not win]
-    - expat
-    - libiconv   # [win]
-    - libuuid    # [linux]
+  host:
+    - freetype {{ freetype }}
+    - libxml2 {{ libxml2 }}
+    - libexpat {{ libexpat }}
+    - libiconv {{ libiconv }}   # [win]
+    - libuuid {{ libuuid }}    # [linux]
     - zlib {{ zlib }}
 
 test:
@@ -75,3 +72,5 @@ extra:
     - mingwandroid
     - ocefpaf
     - pkgw
+  skip-lints:
+    - python_build_tools_in_host
